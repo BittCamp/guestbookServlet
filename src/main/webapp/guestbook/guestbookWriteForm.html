@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+    #testForm {
+        position: relative; 
+        top: 50px; 
+        left: 50px;
+    }
+   #testForm div{
+		color: red;
+		font-size: 9pt;
+		font-weight: bold;
+	}
+</style>
+</head>
+<body>
+<form name="testForm" id="testForm" method="get"
+	action="/guestbookServlet/GuestbookWriteServlet">
+	<h1>guestbookWriteForm</h1>
+	<table border="1" cellpadding="10" cellspaing="0" style="width: 500px; height:300px; border-collapse: collapse;"> 
+		<tr>
+			<th width="200">작성자</th>
+			<td> 
+				<input type="text" name="name" id="name"  placeholder="작성자 입력" width="" maxlength="5">
+			</td>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<td>
+				 <input type="text" name="email" id="email" placeholder="이메일 입력">
+			</td>
+		</tr>
+		<tr>
+			<th>홈페이지</th>
+			<td> 
+				<input type="text" name="homepage" id="homepage"  value="http://" >
+			</td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td>
+				 <input type="text" name="subject" id="subject"  placeholder="제목입력">
+				 <div id="subjectDiv"></div>  
+			</td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td> 
+				<textarea  name="content" id="content"  rows="10" cols="49" ></textarea>
+				<div id="contentDiv"></div>  
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<input type="button" value="글작성" onclick="checkInput()" >
+				<input type="reset" value="다시작성" >
+				<input type="button" value="글목록" onclick="location.href='/guestbookServlet/GuestbookWriteServlet'" >
+			</td>
+		</tr>
+	</table>
+</form>
+<script>
+function checkInput(){
+	document.getElementById("subjectDiv").innerText ="";
+	document.getElementById("contentDiv").innerText ="";
+	if(document.testForm.subject.value =="" ){
+		document.getElementById("subjectDiv").innerText = "타이틀 입력";
+	}else if(document.testForm.content.value ==""){
+		document.getElementById("contentDiv").innerText = "컨텐츠 입력";
+	}else{
+		document.testForm.submit();
+	}	
+}
+</script>
+</body>
+</html>
